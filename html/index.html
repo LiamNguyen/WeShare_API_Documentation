@@ -26,16 +26,34 @@
 
     <div class="container">
         <div class="sidebar-container">
-
+            <ul class="parent">
+                <li id="li-authentication" class="active" onclick="authentication_click()">Authentication</li>
+                <ul id="child-authentication">
+                    <li id="signin">Sign in</li>
+                    <li id="register">Register</li>
+                </ul>
+                <li id="li-user" onclick="user_click()">User</li>
+                <ul id="child-user" class="collapse">
+                    <li id="getAll">Get all user</li>
+                    <li id="getUser">Get user</li>
+                    <li id="deleteUser">Delete user</li>
+                </ul>
+                <li id="li-profile" onclick="profile_click()">Profile</li>
+                <ul id="child-profile" class="collapse">
+                    <li id="getProfile">Get profile</li>
+                    <li id="updateProfile">Update profile</li>
+                </ul>
+            </ul>
         </div>
+
         <div class="main-cabinet">
 
-            <div class="panel">
+            <div id="authenticationSection" class="panel">
                 <div class="panel-heading-1">
                     <h1>Authentication</h1>
                 </div>
 
-                <div class="panel-heading-2">
+                <div id="signinSection" class="panel-heading-2">
                     <h2>User sign in</h2>
                 </div>
 
@@ -115,7 +133,7 @@
 
             <div class="panel">
 
-                <div class="panel-heading-2">
+                <div id="registerSection" class="panel-heading-2">
                     <h2>User register</h2>
                 </div>
 
@@ -180,12 +198,12 @@
                 </div>
             </div>
 
-            <div class="panel">
+            <div id="userSection" class="panel">
                 <div class="panel-heading-1">
                     <h1>User</h1>
                 </div>
 
-                <div class="panel-heading-2">
+                <div id="getAllSection" class="panel-heading-2">
                     <h2>Get all users</h2>
                 </div>
 
@@ -249,7 +267,7 @@
 
             <div class="panel">
 
-                <div class="panel-heading-2">
+                <div id="getUserSection" class="panel-heading-2">
                     <h2>Get user</h2>
                 </div>
 
@@ -300,7 +318,7 @@
 
             <div class="panel">
 
-                <div class="panel-heading-2">
+                <div id="deleteUserSection" class="panel-heading-2">
                     <h2>Delete user</h2>
                 </div>
 
@@ -347,12 +365,12 @@
                 </div>
             </div>
 
-            <div class="panel">
+            <div id="profileSection" class="panel">
                 <div class="panel-heading-1">
                     <h1>Profile</h1>
                 </div>
 
-                <div class="panel-heading-2">
+                <div id="getProfileSection" class="panel-heading-2">
                     <h2>Get profile</h2>
                 </div>
 
@@ -415,7 +433,7 @@
 
             <div class="panel">
 
-                <div class="panel-heading-2">
+                <div id="updateProfileSection" class="panel-heading-2">
                     <h2>Update profile</h2>
                 </div>
 
@@ -501,6 +519,8 @@
         </div>
 
     </div>
+
+    <script src="../assets/scripts/app.js"></script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@ body {
     margin: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow-y: hidden;
 }
 
 .navbar-top {
@@ -16,7 +16,7 @@ body {
     width: 100%;
     background-color: #00004d;
     box-shadow: 0px 3px 5px #888888;
-    position: fixed;
+    position: relative;
 }
 
 .navbar-header {
@@ -80,31 +80,23 @@ body {
 }
 
 .sidebar-container {
-    top: 70px;
     height: 100%;
     min-width: 280px;
     box-shadow: 3px 0px 9px #888888;
     float: left;
     overflow-y: auto;
-    position: fixed;
+    position: absolute;
     transition: -webkit-transform 0.3s ease-out;
     will-change: transform;
 }
 
-.sidebar-container ul.parent {
+.sidebar-container ul {
     list-style: none;
     line-height: 2;
     font-size: 20px;
     font-weight: bold;
     padding-left: 0px;
 }
-
-.sidebar-container ul.parent ul {
-    list-style: none;
-    font-weight: normal;
-}
-
-.sidebar-container ul.child li {}
 
 .sidebar-container ul li {
     padding-left: 15px;
@@ -119,7 +111,7 @@ body {
 }
 
 .main-cabinet {
-    top: 70px;
+    top: 0px;
     left: 280px;
     right: 0px;
     bottom: 0px;
@@ -215,8 +207,4 @@ body {
 
 .json-value {
     color: rebeccapurple;
-}
-
-.collapse {
-    display: none;
 }
