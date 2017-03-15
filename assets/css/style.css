@@ -108,6 +108,7 @@ body {
 
 .sidebar-container ul li {
     padding-left: 15px;
+    transition: background 0.2s ease 0s;
 }
 
 .sidebar-container ul li:hover {
@@ -129,7 +130,6 @@ body {
     position: absolute;
     transition: -webkit-transform 0.3s ease-out;
     will-change: transform;
-    margin-bottom: 60px;
 }
 
 .main-cabinet .panel {
@@ -153,7 +153,8 @@ body {
 }
 
 .main-cabinet .panel .panel-heading-2 h2 {
-    box-shadow: 0px 2px 2px 2px #0000ff;
+    font-size: 33px;
+    padding-left: 20px;
 }
 
 .main-cabinet .panel .panel-body {
@@ -205,12 +206,10 @@ body {
 
 .json-key {
     color: purple;
-    margin-left: 30px;
 }
 
 .json-key-nested {
     color: purple;
-    margin-left: 60px;
 }
 
 .json-value {
@@ -218,5 +217,31 @@ body {
 }
 
 .collapse {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s linear;
     display: none;
+}
+
+.one-tab-indent {
+    margin-left: 30px;
+    max-width: 700px;
+    word-wrap: break-word;
+}
+
+.two-tab-indent {
+    margin-left: 31px;
+    max-width: 700px;
+    word-wrap: break-word;
+}
+
+.three-tab-indent {
+    margin-left: 32px;
+    max-width: 700px;
+    word-wrap: break-word;
+}
+
+.note {
+    font-style: italic;
+    color: gray;
 }

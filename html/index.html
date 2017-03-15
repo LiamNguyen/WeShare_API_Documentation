@@ -34,9 +34,23 @@
                 </ul>
                 <li id="li-user" onclick="user_click()">User</li>
                 <ul id="child-user" class="collapse">
-                    <li id="getAll">Get all user</li>
-                    <li id="getUser">Get user</li>
-                    <li id="deleteUser">Delete user</li>
+                    <li id="basicInfo">Basic information</li>
+                    <li id="necessaryInfo">Necessary information</li>
+                    <li id="importantInfo">Important information</li>
+                </ul>
+                <li id="li-datasource" onclick="datasource_click()">Data source</li>
+                <ul id="child-datasource" class="collapse">
+                    <li id="getCountries">Get countries</li>
+                    <li id="getCities">Get cities</li>
+                    <li id="getDistricts">Get districts</li>
+                    <li id="getLocation">Get locations</li>
+                    <li id="getVouchers">Get vouchers</li>
+                    <li id="getType">Get types</li>
+                    <li id="getAllTime">Get all time</li>
+                    <li id="getEcoTime">Get eco time</li>
+                    <li id="getSelectedTime">Get selected time</li>
+                    <li id="getDaysOfWeek">Get days of week</li>
+                    <li id="getMachines">Get machines</li>
                 </ul>
                 <li id="li-profile" onclick="profile_click()">Profile</li>
                 <ul id="child-profile" class="collapse">
@@ -53,148 +67,252 @@
                     <h1>Authentication</h1>
                 </div>
 
-                <div id="signinSection" class="panel-heading-2">
-                    <h2>User sign in</h2>
+                <div class="panel">
+
+                    <div id="signinSection" class="panel-heading-2">
+                        <h2>User sign in</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-post">POST</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/user/login</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                        </div>
+
+                        <div class="row">
+                            <h3>Request Body: </h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key">"username": </span>
+                                <span class="json-value">"demoUsername",</span><br>
+                                <span class="json-key">"password": </span>
+                                <span class="json-value">"demoPassword"</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_ToAuthenticate": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"customerId": </span>
+                                        <span class="json-value">"e4803eca-080a-11e7-b688-55414aac8288",</span><br>
+                                        <span class="json-key-nested">"customerName": </span>
+                                        <span class="json-value">"Test name",</span><br>
+                                        <span class="json-key-nested">"dob": </span>
+                                        <span class="json-value">"1994/11/11",</span><br>
+                                        <span class="json-key-nested">"gender": </span>
+                                        <span class="json-value">"Male"</span>
+                                        <span class="json-key-nested">"phone": </span>
+                                        <span class="json-value">"046845321565",</span><br>
+                                        <span class="json-key-nested">"address": </span>
+                                        <span class="json-value">"Test address, Espoo Finland",</span><br>
+                                        <span class="json-key-nested">"email": </span>
+                                        <span class="json-value">"test@email.com",</span><br>
+                                        <span class="json-key-nested">"sessionToken": </span>
+                                        <span class="json-value">"63574B47-DDEA-B846-E54E-B52F0F98EFD2",</span><br>
+                                        <span class="json-key-nested">"jwt": </span>
+                                        <span class="json-value">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODk0MzAxODUsImp0aSI6ImZzYitjVlh4YnFSNU5DRStsWThUWG5TZ0ViQ3hpZ0pDbW5yK0hJcys2MDA9IiwiaXNzIjoiZHJtdWxsZXIiLCJuYmYiOjE0ODk0MzAxOTUsImV4cCI6MTQ4OTQzMDI1NSwiZGF0YSI6eyJ1c2VySWQiOiJlNDgwM2VjYS0wODBhLTExZTctYjY4OC01NTQxNGFhYzgyODgiLCJ1c2VyTmFtZSI6Ik5ndXllbiBUaGllbiBQaHVjIiwidXNlckRvYiI6IjE5OTYtMTAtMDYiLCJ1c2VyR2VuZGVyIjoiTWFsZSIsInVzZXJQaG9uZSI6IisxMzgoMDQpLTQ5NDQ5ODIzOCIsInVzZXJBZGRyZXNzIjoiMjlcLzg0XC8xMSBEb2FuIFRoaSBEaWVtIFBodW9uZyAxIFF1YW4gUGh1IE5odWFuIiwidXNlckVtYWlsIjoicGh1Y0B0ZXN0LmNvbSIsInN0ZXAiOiJpbXBvcnRhbnQiLCJhY3RpdmUiOjAsInNlc3Npb25Ub2tlbiI6IjYzNTc0QjQ3LURERUEtQjg0Ni1FNTRFLUI1MkYwRjk4RUZEMiJ9fQ.ezuA8gckYb7j3hBuZBhQuCO-Vll6Sj6n4RiVKMdiPRsAGaMMEXGhruV1L7eknQZkKdkKQwqtOXx2hIB8iwP-ng"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Pattern fail (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                    <span class="json-key-nested">"Select_ToAuthenticate": </span><span>[</span>
+                                        <div class="two-tab-indent">
+                                        <p>{</p>
+                                        <div class="three-tab-indent">
+                                            <span class="json-key-nested">"status": </span>
+                                            <span class="json-value">"0",</span><br>
+                                            <span class="json-key-nested">"error": </span>
+                                            <span class="json-value">"username's format is incorrect",</span><br>
+                                            <span class="json-key-nested">"errorCode": </span>
+                                            <span class="json-value">"pattern-fail"</span>
+                                        </div>
+                                        <p>}</p>
+                                        </div>
+                                    <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Invalid user or password (403)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                    <span class="json-key-nested">"Select_ToAuthenticate": </span><span>[</span>
+                                        <div class="two-tab-indent">
+                                        <p>{</p>
+                                        <div class="three-tab-indent">
+                                            <span class="json-key-nested">"error": </span>
+                                            <span class="json-value">"Invalid username or password,</span><br>
+                                            <span class="json-key-nested">"errorCode": </span>
+                                            <span class="json-value">"invalid-username-or-password"</span>
+                                        </div>
+                                        <p>}</p>
+                                        </div>
+                                    <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="panel-body">
-                    <div class="row">
-                        <h3 style="display: inline-block">Method: </h3>
-                        <span class="method method-post">POST</span>
+                <div class="panel">
+
+                    <div id="registerSection" class="panel-heading-2">
+                        <h2>User register</h2>
                     </div>
 
-                    <div class="endpoint-container" style="border-radius: 15px">
-                        <h3>/user/login</h3>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-post">POST</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/user/register</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                        </div>
+
+                        <div class="row">
+                            <h3>Request Body: </h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key">"username": </span>
+                                <span class="json-value">"demoUsername",</span><br>
+                                <span class="json-key">"password": </span>
+                                <span class="json-value">"demoPassword"</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Insert_NewCustomer": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"customerId": </span>
+                                        <span class="json-value">"e4803eca-080a-11e7-b688-55414aac8288",</span><br>
+                                        <span class="json-key-nested">"customerName": </span>
+                                        <span class="json-value">"null",</span><br>
+                                        <span class="json-key-nested">"dob": </span>
+                                        <span class="json-value">"null",</span><br>
+                                        <span class="json-key-nested">"gender": </span>
+                                        <span class="json-value">"null"</span>
+                                        <span class="json-key-nested">"phone": </span>
+                                        <span class="json-value">"null",</span><br>
+                                        <span class="json-key-nested">"address": </span>
+                                        <span class="json-value">"null",</span><br>
+                                        <span class="json-key-nested">"email": </span>
+                                        <span class="json-value">"null",</span><br>
+                                        <span class="json-key-nested">"sessionToken": </span>
+                                        <span class="json-value">"63574B47-DDEA-B846-E54E-B52F0F98EFD2",</span><br>
+                                        <span class="json-key-nested">"jwt": </span>
+                                        <span class="json-value">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODk0MzAxODUsImp0aSI6ImZzYitjVlh4YnFSNU5DRStsWThUWG5TZ0ViQ3hpZ0pDbW5yK0hJcys2MDA9IiwiaXNzIjoiZHJtdWxsZXIiLCJuYmYiOjE0ODk0MzAxOTUsImV4cCI6MTQ4OTQzMDI1NSwiZGF0YSI6eyJ1c2VySWQiOiJlNDgwM2VjYS0wODBhLTExZTctYjY4OC01NTQxNGFhYzgyODgiLCJ1c2VyTmFtZSI6Ik5ndXllbiBUaGllbiBQaHVjIiwidXNlckRvYiI6IjE5OTYtMTAtMDYiLCJ1c2VyR2VuZGVyIjoiTWFsZSIsInVzZXJQaG9uZSI6IisxMzgoMDQpLTQ5NDQ5ODIzOCIsInVzZXJBZGRyZXNzIjoiMjlcLzg0XC8xMSBEb2FuIFRoaSBEaWVtIFBodW9uZyAxIFF1YW4gUGh1IE5odWFuIiwidXNlckVtYWlsIjoicGh1Y0B0ZXN0LmNvbSIsInN0ZXAiOiJpbXBvcnRhbnQiLCJhY3RpdmUiOjAsInNlc3Npb25Ub2tlbiI6IjYzNTc0QjQ3LURERUEtQjg0Ni1FNTRFLUI1MkYwRjk4RUZEMiJ9fQ.ezuA8gckYb7j3hBuZBhQuCO-Vll6Sj6n4RiVKMdiPRsAGaMMEXGhruV1L7eknQZkKdkKQwqtOXx2hIB8iwP-ng",</span><br>
+                                        <span class="json-key-nested">"message": </span>
+                                        <span class="json-value">"You are successfully registered"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Pattern fail (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                    <span class="json-key-nested">"Insert_NewCustomer": </span><span>[</span>
+                                        <div class="two-tab-indent">
+                                        <p>{</p>
+                                        <div class="three-tab-indent">
+                                            <span class="json-key-nested">"status": </span>
+                                            <span class="json-value">"0",</span><br>
+                                            <span class="json-key-nested">"error": </span>
+                                            <span class="json-value">"username's format is incorrect",</span><br>
+                                            <span class="json-key-nested">"errorCode": </span>
+                                            <span class="json-value">"pattern-fail"</span>
+                                        </div>
+                                        <p>}</p>
+                                        </div>
+                                    <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: User has already existed (405)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                    <span class="json-key-nested">"Insert_NewCustomer": </span><span>[</span>
+                                        <div class="two-tab-indent">
+                                        <p>{</p>
+                                        <div class="three-tab-indent">
+                                            <span class="json-key-nested">"error": </span>
+                                            <span class="json-value">"Customer already existed",</span><br>
+                                            <span class="json-key-nested">"errorCode": </span>
+                                            <span class="json-value">"customer-existed"</span>
+                                        </div>
+                                        <p>}</p>
+                                        </div>
+                                    <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
                     </div>
-
-                    <div class="row">
-                        <h3>Headers: </h3>
-                        <li>Content-Type: application/json</li>
-                    </div>
-
-                    <div class="row">
-                        <h3>Request Body: </h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"userLoginId": </span>
-                        <span class="json-value">"demoUsername",</span><br>
-                        <span class="json-key">"userPassword": </span>
-                        <span class="json-value">"demoPassword"</span>
-                        <p>}</p>
-                    </div>
-
-                    <div class="row">
-                        <h3 style="color: green">Success: (200)</h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"userId": </span>
-                        <span class="json-value">"13",</span><br>
-                        <span class="json-key">"sessionToken": </span>
-                        <span class="json-value">"hhq88unk9lrcvjoq147bb5mh0s"</span>
-                        <p>}</p>
-                    </div>
-
-                    <div class="row">
-                        <h3 style="color: red">Error: User not found (404)</h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://localhost:8080/api-weshare/webapi/user/register",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"Seems like you haven't registered. Please register as a new user with the provided URL in documentation",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">404</span>
-                        <p>}</p>
-                    </div>
-
-                    <div class="row">
-                        <h3 style="color: red">Error: Invalid user or password (403)</h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://localhost:8080/api-weshare/webapi/user/register",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"Invalid username or password",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">403</span>
-                        <p>}</p>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="panel">
-
-                <div id="registerSection" class="panel-heading-2">
-                    <h2>User register</h2>
-                </div>
-
-                <div class="panel-body">
-                    <div class="row">
-                        <h3 style="display: inline-block">Method: </h3>
-                        <span class="method method-post">POST</span>
-                    </div>
-
-                    <div class="endpoint-container" style="border-radius: 15px">
-                        <h3>/user/register</h3>
-                    </div>
-
-                    <div class="row">
-                        <h3>Headers: </h3>
-                        <li>Content-Type: application/json</li>
-                    </div>
-
-                    <div class="row">
-                        <h3>Request Body: </h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"userLoginId": </span>
-                        <span class="json-value">"demoUsername",</span><br>
-                        <span class="json-key">"userPassword": </span>
-                        <span class="json-value">"demoPassword"</span>
-                        <p>}</p>
-                    </div>
-
-                    <div class="row">
-                        <h3 style="color: green">Success: (200)</h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"sessionToken": </span>
-                        <span class="json-value">"b18rc533soguki57ma3gn5s0o5",</span><br>
-                        <span class="json-key">"userLoginId": </span>
-                        <span class="json-value">"demoUsername",</span><br>
-                        <span class="json-key">"userPassword": </span>
-                        <span class="json-value">"demoPassword"</span>
-                        <p>}</p>
-                    </div>
-
-                    <div class="row">
-                        <h3 style="color: red">Error: User has already existed (405)</h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://weshare-api.documentation.com",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"This username has existed",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">"405"</span>
-                        <p>}</p>
-                    </div>
-
                 </div>
             </div>
 
@@ -203,165 +321,1099 @@
                     <h1>User</h1>
                 </div>
 
-                <div id="getAllSection" class="panel-heading-2">
-                    <h2>Get all users</h2>
+                <div class="panel">
+
+                    <div id="basicInfoSection" class="panel-heading-2">
+                        <h2>Basic information</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-put">PUT</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                            <li>Authorization: sessionToken</li>
+                            <span class="note">*Session Token provides should match with user Id</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>Request Body: </h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key">"userId": </span>
+                                <span class="json-value">"41F36332-11AB-9A56-66B0-CD83E566CBCC",</span><br>
+                                <span class="json-key">"userName": </span>
+                                <span class="json-value">"demoCustomerName",</span><br>
+                                <span class="json-key">"userAddress": </span>
+                                <span class="json-value">"demoAddress"</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/user/basicinformation</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_BasicInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"customerId": </span>
+                                        <span class="json-value">"e4803eca-080a-11e7-b688-55414aac8288",</span><br>
+                                        <span class="json-key-nested">"customerName": </span>
+                                        <span class="json-value">"Test name",</span><br>
+                                        <span class="json-key-nested">"dob": </span>
+                                        <span class="json-value">"1994/11/11",</span><br>
+                                        <span class="json-key-nested">"gender": </span>
+                                        <span class="json-value">"Male"</span>
+                                        <span class="json-key-nested">"phone": </span>
+                                        <span class="json-value">"046845321565",</span><br>
+                                        <span class="json-key-nested">"address": </span>
+                                        <span class="json-value">"Test address, Espoo Finland",</span><br>
+                                        <span class="json-key-nested">"email": </span>
+                                        <span class="json-value">"test@email.com",</span><br>
+                                        <span class="json-key-nested">"sessionToken": </span>
+                                        <span class="json-value">"63574B47-DDEA-B846-E54E-B52F0F98EFD2",</span><br>
+                                        <span class="json-key-nested">"jwt": </span>
+                                        <span class="json-value">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODk0MzAxODUsImp0aSI6ImZzYitjVlh4YnFSNU5DRStsWThUWG5TZ0ViQ3hpZ0pDbW5yK0hJcys2MDA9IiwiaXNzIjoiZHJtdWxsZXIiLCJuYmYiOjE0ODk0MzAxOTUsImV4cCI6MTQ4OTQzMDI1NSwiZGF0YSI6eyJ1c2VySWQiOiJlNDgwM2VjYS0wODBhLTExZTctYjY4OC01NTQxNGFhYzgyODgiLCJ1c2VyTmFtZSI6Ik5ndXllbiBUaGllbiBQaHVjIiwidXNlckRvYiI6IjE5OTYtMTAtMDYiLCJ1c2VyR2VuZGVyIjoiTWFsZSIsInVzZXJQaG9uZSI6IisxMzgoMDQpLTQ5NDQ5ODIzOCIsInVzZXJBZGRyZXNzIjoiMjlcLzg0XC8xMSBEb2FuIFRoaSBEaWVtIFBodW9uZyAxIFF1YW4gUGh1IE5odWFuIiwidXNlckVtYWlsIjoicGh1Y0B0ZXN0LmNvbSIsInN0ZXAiOiJpbXBvcnRhbnQiLCJhY3RpdmUiOjAsInNlc3Npb25Ub2tlbiI6IjYzNTc0QjQ3LURERUEtQjg0Ni1FNTRFLUI1MkYwRjk4RUZEMiJ9fQ.ezuA8gckYb7j3hBuZBhQuCO-Vll6Sj6n4RiVKMdiPRsAGaMMEXGhruV1L7eknQZkKdkKQwqtOXx2hIB8iwP-ng"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Unauthorized - Session Token is invalid with user Id (401)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_BasicInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Access Denied. Invalid session token",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"invalid-token"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Required fields are missing (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_BasicInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Required fields is missing",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"required-fields-missing"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Pattern fails (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_BasicInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"customerName's format is incorrect",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"pattern-fail"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="panel-body">
-                    <div class="row">
-                        <h3 style="display: inline-block">Method: </h3>
-                        <span class="method method-get">GET</span>
+                <div class="panel">
+
+                    <div id="necessaryInfoSection" class="panel-heading-2">
+                        <h2>Necessary information</h2>
                     </div>
 
-                    <div class="endpoint-container" style="border-radius: 15px">
-                        <h3>/user</h3>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-put">PUT</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                            <li>Authorization: sessionToken</li>
+                            <span class="note">*Session Token provides should match with user Id</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>Request Body: </h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key">"userId": </span>
+                                <span class="json-value">"41F36332-11AB-9A56-66B0-CD83E566CBCC",</span><br>
+                                <span class="json-key">"userDob": </span>
+                                <span class="json-value">"1980/01/01",</span><br>
+                                <span class="json-key">"userGender": </span>
+                                <span class="json-value">"Male"</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/user/necessaryinformation</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_NecessaryInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"customerId": </span>
+                                        <span class="json-value">"e4803eca-080a-11e7-b688-55414aac8288",</span><br>
+                                        <span class="json-key-nested">"customerName": </span>
+                                        <span class="json-value">"Test name",</span><br>
+                                        <span class="json-key-nested">"dob": </span>
+                                        <span class="json-value">"1994/11/11",</span><br>
+                                        <span class="json-key-nested">"gender": </span>
+                                        <span class="json-value">"Male"</span>
+                                        <span class="json-key-nested">"phone": </span>
+                                        <span class="json-value">"046845321565",</span><br>
+                                        <span class="json-key-nested">"address": </span>
+                                        <span class="json-value">"Test address, Espoo Finland",</span><br>
+                                        <span class="json-key-nested">"email": </span>
+                                        <span class="json-value">"test@email.com",</span><br>
+                                        <span class="json-key-nested">"sessionToken": </span>
+                                        <span class="json-value">"63574B47-DDEA-B846-E54E-B52F0F98EFD2",</span><br>
+                                        <span class="json-key-nested">"jwt": </span>
+                                        <span class="json-value">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODk0MzAxODUsImp0aSI6ImZzYitjVlh4YnFSNU5DRStsWThUWG5TZ0ViQ3hpZ0pDbW5yK0hJcys2MDA9IiwiaXNzIjoiZHJtdWxsZXIiLCJuYmYiOjE0ODk0MzAxOTUsImV4cCI6MTQ4OTQzMDI1NSwiZGF0YSI6eyJ1c2VySWQiOiJlNDgwM2VjYS0wODBhLTExZTctYjY4OC01NTQxNGFhYzgyODgiLCJ1c2VyTmFtZSI6Ik5ndXllbiBUaGllbiBQaHVjIiwidXNlckRvYiI6IjE5OTYtMTAtMDYiLCJ1c2VyR2VuZGVyIjoiTWFsZSIsInVzZXJQaG9uZSI6IisxMzgoMDQpLTQ5NDQ5ODIzOCIsInVzZXJBZGRyZXNzIjoiMjlcLzg0XC8xMSBEb2FuIFRoaSBEaWVtIFBodW9uZyAxIFF1YW4gUGh1IE5odWFuIiwidXNlckVtYWlsIjoicGh1Y0B0ZXN0LmNvbSIsInN0ZXAiOiJpbXBvcnRhbnQiLCJhY3RpdmUiOjAsInNlc3Npb25Ub2tlbiI6IjYzNTc0QjQ3LURERUEtQjg0Ni1FNTRFLUI1MkYwRjk4RUZEMiJ9fQ.ezuA8gckYb7j3hBuZBhQuCO-Vll6Sj6n4RiVKMdiPRsAGaMMEXGhruV1L7eknQZkKdkKQwqtOXx2hIB8iwP-ng"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Unauthorized - Session Token is invalid with user Id (401)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_NecessaryInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Access Denied. Invalid session token",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"invalid-token"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Required fields are missing (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_NecessaryInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Required fields is missing",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"required-fields-missing"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Pattern fails (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_NecessaryInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"dob's format is incorrect",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"pattern-fail"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="panel">
+
+                    <div id="importantInfoSection" class="panel-heading-2">
+                        <h2>Important information</h2>
                     </div>
 
-                    <div class="row">
-                        <h3 style="color: green">Success: (200)</h3>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-put">PUT</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                            <li>Authorization: sessionToken</li>
+                            <span class="note">*Session Token provides should match with user Id</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>Request Body: </h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key">"userId": </span>
+                                <span class="json-value">"41F36332-11AB-9A56-66B0-CD83E566CBCC",</span><br>
+                                <span class="json-key">"userEmail": </span>
+                                <span class="json-value">"demo@email.com",</span><br>
+                                <span class="json-key">"userPhone": </span>
+                                <span class="json-value">"033452323423"</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/user/importantinformation</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_ImportantInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"customerId": </span>
+                                        <span class="json-value">"e4803eca-080a-11e7-b688-55414aac8288",</span><br>
+                                        <span class="json-key-nested">"customerName": </span>
+                                        <span class="json-value">"Test name",</span><br>
+                                        <span class="json-key-nested">"dob": </span>
+                                        <span class="json-value">"1994/11/11",</span><br>
+                                        <span class="json-key-nested">"gender": </span>
+                                        <span class="json-value">"Male"</span>
+                                        <span class="json-key-nested">"phone": </span>
+                                        <span class="json-value">"046845321565",</span><br>
+                                        <span class="json-key-nested">"address": </span>
+                                        <span class="json-value">"Test address, Espoo Finland",</span><br>
+                                        <span class="json-key-nested">"email": </span>
+                                        <span class="json-value">"test@email.com",</span><br>
+                                        <span class="json-key-nested">"sessionToken": </span>
+                                        <span class="json-value">"63574B47-DDEA-B846-E54E-B52F0F98EFD2",</span><br>
+                                        <span class="json-key-nested">"jwt": </span>
+                                        <span class="json-value">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE0ODk0MzAxODUsImp0aSI6ImZzYitjVlh4YnFSNU5DRStsWThUWG5TZ0ViQ3hpZ0pDbW5yK0hJcys2MDA9IiwiaXNzIjoiZHJtdWxsZXIiLCJuYmYiOjE0ODk0MzAxOTUsImV4cCI6MTQ4OTQzMDI1NSwiZGF0YSI6eyJ1c2VySWQiOiJlNDgwM2VjYS0wODBhLTExZTctYjY4OC01NTQxNGFhYzgyODgiLCJ1c2VyTmFtZSI6Ik5ndXllbiBUaGllbiBQaHVjIiwidXNlckRvYiI6IjE5OTYtMTAtMDYiLCJ1c2VyR2VuZGVyIjoiTWFsZSIsInVzZXJQaG9uZSI6IisxMzgoMDQpLTQ5NDQ5ODIzOCIsInVzZXJBZGRyZXNzIjoiMjlcLzg0XC8xMSBEb2FuIFRoaSBEaWVtIFBodW9uZyAxIFF1YW4gUGh1IE5odWFuIiwidXNlckVtYWlsIjoicGh1Y0B0ZXN0LmNvbSIsInN0ZXAiOiJpbXBvcnRhbnQiLCJhY3RpdmUiOjAsInNlc3Npb25Ub2tlbiI6IjYzNTc0QjQ3LURERUEtQjg0Ni1FNTRFLUI1MkYwRjk4RUZEMiJ9fQ.ezuA8gckYb7j3hBuZBhQuCO-Vll6Sj6n4RiVKMdiPRsAGaMMEXGhruV1L7eknQZkKdkKQwqtOXx2hIB8iwP-ng"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Unauthorized - Session Token is invalid with user Id (401)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_ImportantInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Access Denied. Invalid session token",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"invalid-token"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Required fields are missing (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_ImportantInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Required fields is missing",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"required-fields-missing"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Pattern fails (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_ImportantInfo": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"dob's format is incorrect",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"pattern-fail"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
                     </div>
-
-                    <div class="row">
-                        <p>[</p>
-                        <p style="margin-left: 30px">{</p>
-                        <span class="json-key-nested">"sessionToken": </span>
-                        <span class="json-value">"b18rc533soguki57ma3gn5s0o5",</span><br>
-                        <span class="json-key-nested">"userId": </span>
-                        <span class="json-value">"14",</span><br>
-                        <span class="json-key-nested">"userLoginId": </span>
-                        <span class="json-value">"demoUsername",</span><br>
-                        <span class="json-key-nested">"userPassword": </span>
-                        <span class="json-value">"demoPassword"</span>
-                        <p style="margin-left: 30px">},</p>
-
-                        <p style="margin-left: 30px">{</p>
-                        <span class="json-key-nested">"sessionToken": </span>
-                        <span class="json-value">"hhq88unk9lrcvjoq147bb5mh0s",</span><br>
-                        <span class="json-key-nested">"userId": </span>
-                        <span class="json-value">"13",</span><br>
-                        <span class="json-key-nested">"userLoginId": </span>
-                        <span class="json-value">"demoUsername1",</span><br>
-                        <span class="json-key-nested">"userPassword": </span>
-                        <span class="json-value">"demoPassword1"</span>
-                        <p style="margin-left: 30px">}</p>
-                        <p>]</p>
-                    </div>
-
-                    <div class="row">
-                        <h3 style="color: red">Error: No user has been added (404)</h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://weshare-api.documentation.com",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"There is no user added to database",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">"404"</span>
-                        <p>}</p>
-                    </div>
-
                 </div>
             </div>
 
-            <div class="panel">
-
-                <div id="getUserSection" class="panel-heading-2">
-                    <h2>Get user</h2>
+            <div id="datasourceSection" class="panel">
+                <div class="panel-heading-1">
+                    <h1>Data Source</h1>
                 </div>
 
-                <div class="panel-body">
-                    <div class="row">
-                        <h3 style="display: inline-block">Method: </h3>
-                        <span class="method method-get">GET</span>
+                <div class="panel">
+
+                    <div id="getCountriesSection" class="panel-heading-2">
+                        <h2>Get countries</h2>
                     </div>
 
-                    <div class="endpoint-container" style="border-radius: 15px">
-                        <h3>/user/:userLoginId</h3>
-                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
 
-                    <div class="row">
-                        <h3 style="color: green">Success: (200)</h3>
-                    </div>
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/datasource/countries</h3>
+                        </div>
 
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"sessionToken": </span>
-                        <span class="json-value">"hhq88unk9lrcvjoq147bb5mh0s",</span><br>
-                        <span class="json-key">"userId": </span>
-                        <span class="json-value">"13",</span><br>
-                        <span class="json-key">"userLoginId": </span>
-                        <span class="json-value">"demoUsername1",</span><br>
-                        <span class="json-key">"userPassword": </span>
-                        <span class="json-value">"demoPassword1"</span>
-                        <p>}</p>
-                    </div>
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
 
-                    <div class="row">
-                        <h3 style="color: red">Error: User is not existed (404)</h3>
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_Countries": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"COUNTRY_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"COUNTRY": </span>
+                                        <span class="json-value">"Afghanistan"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"COUNTRY_ID": </span>
+                                        <span class="json-value">"2",</span><br>
+                                        <span class="json-key-nested">"COUNTRY": </span>
+                                        <span class="json-value">"Albania"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"COUNTRY_ID": </span>
+                                        <span class="json-value">"3",</span><br>
+                                        <span class="json-key-nested">"COUNTRY": </span>
+                                        <span class="json-value">"Algeria"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>...</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"COUNTRY_ID": </span>
+                                        <span class="json-value">"240",</span><br>
+                                        <span class="json-key-nested">"COUNTRY": </span>
+                                        <span class="json-value">"Zambia"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
                     </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://weshare-api.documentation.com",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"User is not existed",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">"404"</span>
-                        <p>}</p>
-                    </div>
-
                 </div>
-            </div>
 
-            <div class="panel">
+                <div class="panel">
 
-                <div id="deleteUserSection" class="panel-heading-2">
-                    <h2>Delete user</h2>
+                    <div id="getCitiesSection" class="panel-heading-2">
+                        <h2>Get cities</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/datasource/cities/{countryId}</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_Cities": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"CITY_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"CITY": </span>
+                                        <span class="json-value">"An Giang"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"CITY_ID": </span>
+                                        <span class="json-value">"2",</span><br>
+                                        <span class="json-key-nested">"CITY": </span>
+                                        <span class="json-value">"Ba Ria Vung Tau"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"CITY_ID": </span>
+                                        <span class="json-value">"3",</span><br>
+                                        <span class="json-key-nested">"CITY": </span>
+                                        <span class="json-value">"Bac Giang"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>...</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"CITY_ID": </span>
+                                        <span class="json-value">"63",</span><br>
+                                        <span class="json-key-nested">"CITY": </span>
+                                        <span class="json-value">"Yen Bai"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="panel-body">
-                    <div class="row">
-                        <h3 style="display: inline-block">Method: </h3>
-                        <span class="method method-delete">DELETE</span>
+                <div class="panel">
+
+                    <div id="getDistrictsSection" class="panel-heading-2">
+                        <h2>Get districts</h2>
                     </div>
 
-                    <div class="endpoint-container" style="border-radius: 15px">
-                        <h3>/user/:userLoginId</h3>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/datasource/districts/{cityId}</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_Districts": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"DISTRICT_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"DISTRICT": </span>
+                                        <span class="json-value">"An Phú"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"DISTRICT_ID": </span>
+                                        <span class="json-value">"2",</span><br>
+                                        <span class="json-key-nested">"DISTRICT": </span>
+                                        <span class="json-value">"Châu Đốc"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"DISTRICT_ID": </span>
+                                        <span class="json-value">"3",</span><br>
+                                        <span class="json-key-nested">"DISTRICT": </span>
+                                        <span class="json-value">"Châu Phú"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>...</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"DISTRICT_ID": </span>
+                                        <span class="json-value">"685",</span><br>
+                                        <span class="json-key-nested">"DISTRICT": </span>
+                                        <span class="json-value">"Yen Binh"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+
+                    <div id="getLocationsSection" class="panel-heading-2">
+                        <h2>Get locations</h2>
                     </div>
 
-                    <div class="row">
-                        <h3 style="color: green">Success: (200)</h3>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/datasource/locations/{districtId}</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_Locations": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"LOCATION_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"ADDRESS": </span>
+                                        <span class="json-value">"31 Trần Quang Diệu, P.13"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+
+                    <div id="getVouchersSection" class="panel-heading-2">
+                        <h2>Get vouchers</h2>
                     </div>
 
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://weshare-api.documentation.com",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"Deleted user successfully",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">"200"</span>
-                        <p>}</p>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/datasource/vouchers</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_Vouchers": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"VOUCHER_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"VOUCHER": </span>
+                                        <span class="json-value">"ECO Booking"</span><br>
+                                        <span class="json-key-nested">"PRICE": </span>
+                                        <span class="json-value">"9000000"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"VOUCHER_ID": </span>
+                                        <span class="json-value">"2",</span><br>
+                                        <span class="json-key-nested">"VOUCHER": </span>
+                                        <span class="json-value">"VIP Booking"</span><br>
+                                        <span class="json-key-nested">"PRICE": </span>
+                                        <span class="json-value">"18000000"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+
+                    <div id="getTypesSection" class="panel-heading-2">
+                        <h2>Get types</h2>
                     </div>
 
-                    <div class="row">
-                        <h3 style="color: red">Error: User is not existed (404)</h3>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/datasource/types</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_Types": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TYPE_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"TYPE": </span>
+                                        <span class="json-value">"Co dinh"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TYPE_ID": </span>
+                                        <span class="json-value">"2",</span><br>
+                                        <span class="json-key-nested">"TYPE": </span>
+                                        <span class="json-value">"Tu do"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+
+                    <div id="getAllTimeSection" class="panel-heading-2">
+                        <h2>Get all time</h2>
                     </div>
 
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://weshare-api.documentation.com",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"User is not existed",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">"404"</span>
-                        <p>}</p>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/time/alltime</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_AllTime": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"06:00"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"2",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"06:15"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>...</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"65",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"22:00"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+
+                    <div id="getEcoTimeSection" class="panel-heading-2">
+                        <h2>Get eco time</h2>
                     </div>
 
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/time/ecotime</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_EcoTime": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"7",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"07:30"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"8",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"07:45"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>...</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"45",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"17:00"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+
+                    <div id="getSelectedTimeSection" class="panel-heading-2">
+                        <h2>Get selected time</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/time/selectedtime/{dayId}/{locationId}/{timeId}</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_SelectedTime": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"06:00"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"8",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"07:45"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>...</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"TIME_ID": </span>
+                                        <span class="json-value">"48",</span><br>
+                                        <span class="json-key-nested">"TIME": </span>
+                                        <span class="json-value">"17:45"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel">
+
+                    <div id="getDaysOfWeekSection" class="panel-heading-2">
+                        <h2>Get days of week</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/datasource/daysofweek</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_DaysOfWeek": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"DAY_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"DAY": </span>
+                                        <span class="json-value">"Thứ Hai"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"DAY_ID": </span>
+                                        <span class="json-value">"2",</span><br>
+                                        <span class="json-key-nested">"DAY": </span>
+                                        <span class="json-value">"Thứ Ba"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>...</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"DAY_ID": </span>
+                                        <span class="json-value">"7",</span><br>
+                                        <span class="json-key-nested">"DAY": </span>
+                                        <span class="json-value">"Chủ Nhật"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+
+                    <div id="getMachinesSection" class="panel-heading-2">
+                        <h2>Get machines</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/datasource/machines/{locationId}</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Select_Machines": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"MACHINE_ID": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"MACHINE_NAME": </span>
+                                        <span class="json-value">"Máy 1"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"MACHINE_ID": </span>
+                                        <span class="json-value">"2",</span><br>
+                                        <span class="json-key-nested">"MACHINE_NAME": </span>
+                                        <span class="json-value">"Máy 2"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -370,65 +1422,69 @@
                     <h1>Profile</h1>
                 </div>
 
-                <div id="getProfileSection" class="panel-heading-2">
-                    <h2>Get profile</h2>
+                    <div class="panel">
+
+                    <div id="getProfileSection" class="panel-heading-2">
+                        <h2>Get profile</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-get">GET</span>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/user/profile</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                            <li>Authorization: [Session Token] - Get token from login or register</li>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                            <span class="json-key">"createdAt": </span>
+                            <span class="json-value">"2017-02-24T10:25:07.919",</span><br>
+                            <span class="json-key">"userEmail": </span>
+                            <span class="json-value">"phuc@gmail.com",</span><br>
+                            <span class="json-key">"userFirstName": </span>
+                            <span class="json-value">"Thien Phuc"</span><br>
+                            <span class="json-key">"userLastName": </span>
+                            <span class="json-value">"Nguyen"</span><br>
+                            <span class="json-key">"userID": </span>
+                            <span class="json-value">"4"</span><br>
+                            <span class="json-key">"userPhone": </span>
+                            <span class="json-value">"068452597"</span><br>
+                            <span class="json-key">"userTwitter": </span>
+                            <span class="json-value">"phuc@gmail.com"</span>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Unauthorized (401)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                            <span class="json-key">"documentation": </span>
+                            <span class="json-value">"http://weshare-api.documentation.com",</span><br>
+                            <span class="json-key">"message": </span>
+                            <span class="json-value">"Invalid authorization token. Please login first to get session token",</span><br>
+                            <span class="json-key">"statusCode": </span>
+                            <span class="json-value">"401"</span>
+                            <p>}</p>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="panel-body">
-                    <div class="row">
-                        <h3 style="display: inline-block">Method: </h3>
-                        <span class="method method-get">GET</span>
-                    </div>
-
-                    <div class="endpoint-container" style="border-radius: 15px">
-                        <h3>/user/profile</h3>
-                    </div>
-
-                    <div class="row">
-                        <h3>Headers: </h3>
-                        <li>Content-Type: application/json</li>
-                        <li>Authorization: [Session Token] - Get token from login or register</li>
-                    </div>
-
-                    <div class="row">
-                        <h3 style="color: green">Success: (200)</h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"createdAt": </span>
-                        <span class="json-value">"2017-02-24T10:25:07.919",</span><br>
-                        <span class="json-key">"userEmail": </span>
-                        <span class="json-value">"phuc@gmail.com",</span><br>
-                        <span class="json-key">"userFirstName": </span>
-                        <span class="json-value">"Thien Phuc"</span><br>
-                        <span class="json-key">"userLastName": </span>
-                        <span class="json-value">"Nguyen"</span><br>
-                        <span class="json-key">"userID": </span>
-                        <span class="json-value">"4"</span><br>
-                        <span class="json-key">"userPhone": </span>
-                        <span class="json-value">"068452597"</span><br>
-                        <span class="json-key">"userTwitter": </span>
-                        <span class="json-value">"phuc@gmail.com"</span>
-                        <p>}</p>
-                    </div>
-
-                    <div class="row">
-                        <h3 style="color: red">Error: Unauthorized (401)</h3>
-                    </div>
-
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://weshare-api.documentation.com",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"Invalid authorization token. Please login first to get session token",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">"401"</span>
-                        <p>}</p>
-                    </div>
-
-                </div>
             </div>
 
             <div class="panel">
