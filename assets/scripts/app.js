@@ -1,21 +1,25 @@
 var auth = document.getElementById("li-authentication")
 var user = document.getElementById("li-user")
 var datasource = document.getElementById("li-datasource")
+var appointment = document.getElementById("li-appointment")
 var profile = document.getElementById("li-profile")
 
 var authSection = document.getElementById("authenticationSection")
 var userSection = document.getElementById("userSection")
 var datasourceSection = document.getElementById("datasourceSection")
+var appointmentSection = document.getElementById("appointmentSection")
 var profileSection = document.getElementById("profileSection")
 
 var authChild = document.getElementById("child-authentication")
 var userChild = document.getElementById("child-user")
 var datasourceChild = document.getElementById("child-datasource")
+var appointmentChild = document.getElementById("child-appointment")
 var profileChild = document.getElementById("child-profile")
 
 var authIsCollapsed = false
 var userIsCollapsed = true
 var datasourceIsCollapsed = true
+var appointmentIsCollapsed = true
 var profileIsCollapsed = true
 
 var signinSection = document.getElementById("signinSection")
@@ -34,6 +38,8 @@ var getEcoTimeSection = document.getElementById("getEcoTimeSection")
 var getSelectedTimeSection = document.getElementById("getSelectedTimeSection")
 var getDaysOfWeekSection = document.getElementById("getDaysOfWeekSection")
 var getMachinesSection = document.getElementById("getMachinesSection")
+var bookTimeSection = document.getElementById("bookTimeSection");
+var releaseTimeSection = document.getElementById("releaseTimeSection")
 var getProfileSection = document.getElementById("getProfileSection")
 var updateProfileSection = document.getElementById("updateProfileSection")
 
@@ -101,6 +107,14 @@ document.querySelector("#child-datasource #getMachines").addEventListener("click
     getMachinesSection.scrollIntoView()
 })
 
+document.querySelector("#child-appointment #bookTime").addEventListener("click", function() {
+    bookTimeSection.scrollIntoView()
+})
+
+document.querySelector("#child-appointment #releaseTime").addEventListener("click", function() {
+    releaseTimeSection.scrollIntoView()
+})
+
 document.querySelector("#child-profile #getProfile").addEventListener("click", function() {
     getProfileSection.scrollIntoView()
 })
@@ -127,6 +141,12 @@ function datasource_click() {
     datasourceSection.scrollIntoView({ block: "start", behavior: "smooth" })
 }
 
+function appointment_click() {
+    addActiveClass("appointment")
+    handleChildCollapse("appointment")
+    appointmentSection.scrollIntoView({ block: "start", behavior: "smooth" })
+}
+
 function profile_click() {
     addActiveClass("profile")
     handleChildCollapse("profile")
@@ -142,6 +162,7 @@ function addActiveClass(addToEl) {
                 removeActiveClass("user")
                 removeActiveClass("profile")
                 removeActiveClass("datasource")
+                removeActiveClass("appointment")
             }
             break
         case "user":
@@ -151,6 +172,7 @@ function addActiveClass(addToEl) {
                 removeActiveClass("authentication")
                 removeActiveClass("profile")
                 removeActiveClass("datasource")
+                removeActiveClass("appointment")
             }
             break
         case "datasource":
@@ -160,6 +182,17 @@ function addActiveClass(addToEl) {
                 removeActiveClass("authentication")
                 removeActiveClass("profile")
                 removeActiveClass("user")
+                removeActiveClass("appointment")
+            }
+            break
+        case "appointment":
+            if (appointment.className == "") {
+                appointment.className += "active"
+                document.getElementById("li-appointment").className = appointment.className
+                removeActiveClass("authentication")
+                removeActiveClass("profile")
+                removeActiveClass("user")
+                removeActiveClass("datasource")
             }
             break
         case "profile":
@@ -169,6 +202,7 @@ function addActiveClass(addToEl) {
                 removeActiveClass("authentication")
                 removeActiveClass("user")
                 removeActiveClass("datasource")
+                removeActiveClass("appointment")
             }
             break
     }
@@ -197,6 +231,13 @@ function removeActiveClass(removeFromEl) {
                 document.getElementById("li-datasource").className = datasource.className
             }
             break
+        case "appointment":
+
+            if (appointment.className.includes("active")) {
+                appointment.className = ""
+                document.getElementById("li-appointment").className = appointment.className
+            }
+            break
         case "profile":
 
             if (profile.className.includes("active")) {
@@ -222,6 +263,9 @@ function handleActiveChild(activeChild) {
             break
         case "datasource":
             datasourceIsCollapsed = false
+            break
+        case "appointment":
+            appointmentIsCollapsed = false
             break
         case "profile":
             profileIsCollapsed = false
@@ -256,6 +300,14 @@ function handleChildCollapse(activeChild) {
         datasourceChild.className = ""
     }
 
+    if (appointmentIsCollapsed) {
+        if (appointmentChild.className == "") {
+            appointmentChild.className += "collapse"
+        }
+    } else {
+        appointmentChild.className = ""
+    }
+
     if (profileIsCollapsed) {
         if (profileChild.className == "") {
             profileChild.className += "collapse"
@@ -267,5 +319,6 @@ function handleChildCollapse(activeChild) {
     document.getElementById("child-authentication").className = authChild.className
     document.getElementById("child-user").className = userChild.className
     document.getElementById("child-datasource").className = datasourceChild.className
+    document.getElementById("child-appointment").className = appointmentChild.className
     document.getElementById("child-profile").className = profileChild.className
 }

@@ -52,6 +52,11 @@
                     <li id="getDaysOfWeek">Get days of week</li>
                     <li id="getMachines">Get machines</li>
                 </ul>
+                <li id="li-appointment" onclick="appointment_click()">Appointments</li>
+                <ul id="child-appointment" class="collapse">
+                    <li id="bookTime">Book time</li>
+                    <li id="releaseTime">Release time</li>
+                </ul>
                 <li id="li-profile" onclick="profile_click()">Profile</li>
                 <ul id="child-profile" class="collapse">
                     <li id="getProfile">Get profile</li>
@@ -1417,6 +1422,371 @@
                 </div>
             </div>
 
+            <div id="appointmentSection" class="panel">
+                <div class="panel-heading-1">
+                    <h1>Appointments</h1>
+                </div>
+
+                <div class="panel">
+
+                    <div id="bookTimeSection" class="panel-heading-2">
+                        <h2>Book time</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-post">POST</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                            <li>Authorization: sessionToken</li>
+                        </div>
+
+                        <div class="row">
+                            <h3>Request Body: </h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"locationId: "</span>
+                                <span class="json-value">"1",</span><br>
+                                <span class="json-key-nested">"time": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"dayId": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"timeId": </span>
+                                        <span class="json-value">"8",</span><br>
+                                        <span class="json-key-nested">"machineId": </span>
+                                        <span class="json-value">"1"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"dayId": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"timeId": </span>
+                                        <span class="json-value">"4",</span><br>
+                                        <span class="json-key-nested">"machineId": </span>
+                                        <span class="json-value">"2"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"dayId": </span>
+                                        <span class="json-value">"5",</span><br>
+                                        <span class="json-key-nested">"timeId": </span>
+                                        <span class="json-value">"9",</span><br>
+                                        <span class="json-key-nested">"machineId": </span>
+                                        <span class="json-value">"1"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/time/book</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"BookingTransaction": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"existed": </span>
+                                        <span class="json-value">false</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Unauthorized - Session Token is invalid (401)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"BookingTransaction": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Access Denied. Invalid session token",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"invalid-token"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Time has been chosen (409)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"BookingTransaction": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"exited": </span>
+                                        <span class="json-value">true</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Required fields are missing (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"BookingTransaction": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Required fields is missing",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"required-fields-missing"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Pattern fails (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"BookingTransaction": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"timeId's format is incorrect",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"pattern-fail"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel">
+
+                    <div id="releaseTimeSection" class="panel-heading-2">
+                        <h2>Release time</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-put">PUT</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                            <li>Authorization: sessionToken</li>
+                        </div>
+
+                        <div class="row">
+                            <h3>Request Body: </h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"locationId: "</span>
+                                <span class="json-value">"1",</span><br>
+                                <span class="json-key-nested">"time": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"dayId": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"timeId": </span>
+                                        <span class="json-value">"8",</span><br>
+                                        <span class="json-key-nested">"machineId": </span>
+                                        <span class="json-value">"1"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"dayId": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"timeId": </span>
+                                        <span class="json-value">"4",</span><br>
+                                        <span class="json-key-nested">"machineId": </span>
+                                        <span class="json-value">"2"</span><br>
+                                        </div>
+                                    <p>},</p>
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"dayId": </span>
+                                        <span class="json-value">"5",</span><br>
+                                        <span class="json-key-nested">"timeId": </span>
+                                        <span class="json-value">"9",</span><br>
+                                        <span class="json-key-nested">"machineId": </span>
+                                        <span class="json-value">"1"</span><br>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/time/release</h3>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_ReleaseTime": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"1",</span><br>
+                                        <span class="json-key-nested">"message": </span>
+                                        <span class="json-value">"Release time successfully"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Unauthorized - Session Token is invalid (401)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_ReleaseTime": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Access Denied. Invalid session token",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"invalid-token"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Required fields are missing (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_ReleaseTime": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"Required fields is missing",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"required-fields-missing"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                        <div class="row">
+                            <h3 style="color: red">Error: Pattern fails (400)</h3>
+                        </div>
+
+                        <div class="row">
+                            <p>{</p>
+                                <div class="one-tab-indent">
+                                <span class="json-key-nested">"Update_ReleaseTime": </span><span>[</span>
+                                    <div class="two-tab-indent">
+                                    <p>{</p>
+                                        <div class="three-tab-indent">
+                                        <span class="json-key-nested">"status": </span>
+                                        <span class="json-value">"0",</span><br>
+                                        <span class="json-key-nested">"error": </span>
+                                        <span class="json-value">"dayId's format is incorrect",</span><br>
+                                        <span class="json-key-nested">"errorCode": </span>
+                                        <span class="json-value">"pattern-fail"</span>
+                                        </div>
+                                    <p>}</p>
+                                    </div>
+                                <span>]</span>
+                                </div>
+                            <p>}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
             <div id="profileSection" class="panel">
                 <div class="panel-heading-1">
                     <h1>Profile</h1>
@@ -1485,91 +1855,90 @@
                     </div>
                 </div>
 
-            </div>
+                <div class="panel">
 
-            <div class="panel">
-
-                <div id="updateProfileSection" class="panel-heading-2">
-                    <h2>Update profile</h2>
-                </div>
-
-                <div class="panel-body">
-                    <div class="row">
-                        <h3 style="display: inline-block">Method: </h3>
-                        <span class="method method-put">PUT</span>
+                    <div id="updateProfileSection" class="panel-heading-2">
+                        <h2>Update profile</h2>
                     </div>
 
-                    <div class="endpoint-container" style="border-radius: 15px">
-                        <h3>/user/profile</h3>
-                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <h3 style="display: inline-block">Method: </h3>
+                            <span class="method method-put">PUT</span>
+                        </div>
 
-                    <div class="row">
-                        <h3>Headers: </h3>
-                        <li>Content-Type: application/json</li>
-                        <li>Authorization: [Session Token] - Get token from login or register</li>
-                    </div>
+                        <div class="endpoint-container" style="border-radius: 15px">
+                            <h3>/user/profile</h3>
+                        </div>
 
-                    <div class="row">
-                        <h3>Request Body: </h3>
-                    </div>
+                        <div class="row">
+                            <h3>Headers: </h3>
+                            <li>Content-Type: application/json</li>
+                            <li>Authorization: [Session Token] - Get token from login or register</li>
+                        </div>
 
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"createdAt": </span>
-                        <span class="json-value">"2017-02-24T10:25:07.919",</span><br>
-                        <span class="json-key">"userEmail": </span>
-                        <span class="json-value">"phuc@gmail.com",</span><br>
-                        <span class="json-key">"userFirstName": </span>
-                        <span class="json-value">"Thien Phuc"</span><br>
-                        <span class="json-key">"userLastName": </span>
-                        <span class="json-value">"Nguyen"</span><br>
-                        <span class="json-key">"userID": </span>
-                        <span class="json-value">"4"</span><br>
-                        <span class="json-key">"userPhone": </span>
-                        <span class="json-value">"068452597"</span><br>
-                        <span class="json-key">"userTwitter": </span>
-                        <span class="json-value">"phuc@gmail.com"</span>
-                        <p>}</p>
-                    </div>
+                        <div class="row">
+                            <h3>Request Body: </h3>
+                        </div>
 
-                    <div class="row">
-                        <h3 style="color: green">Success: (200)</h3>
-                    </div>
+                        <div class="row">
+                            <p>{</p>
+                            <span class="json-key">"createdAt": </span>
+                            <span class="json-value">"2017-02-24T10:25:07.919",</span><br>
+                            <span class="json-key">"userEmail": </span>
+                            <span class="json-value">"phuc@gmail.com",</span><br>
+                            <span class="json-key">"userFirstName": </span>
+                            <span class="json-value">"Thien Phuc"</span><br>
+                            <span class="json-key">"userLastName": </span>
+                            <span class="json-value">"Nguyen"</span><br>
+                            <span class="json-key">"userID": </span>
+                            <span class="json-value">"4"</span><br>
+                            <span class="json-key">"userPhone": </span>
+                            <span class="json-value">"068452597"</span><br>
+                            <span class="json-key">"userTwitter": </span>
+                            <span class="json-value">"phuc@gmail.com"</span>
+                            <p>}</p>
+                        </div>
 
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"createdAt": </span>
-                        <span class="json-value">"2017-02-24T10:25:07.919",</span><br>
-                        <span class="json-key">"userEmail": </span>
-                        <span class="json-value">"phuc@gmail.com",</span><br>
-                        <span class="json-key">"userFirstName": </span>
-                        <span class="json-value">"Thien Phuc"</span><br>
-                        <span class="json-key">"userLastName": </span>
-                        <span class="json-value">"Nguyen"</span><br>
-                        <span class="json-key">"userID": </span>
-                        <span class="json-value">"4"</span><br>
-                        <span class="json-key">"userPhone": </span>
-                        <span class="json-value">"068452597"</span><br>
-                        <span class="json-key">"userTwitter": </span>
-                        <span class="json-value">"phuc@gmail.com"</span>
-                        <p>}</p>
-                    </div>
+                        <div class="row">
+                            <h3 style="color: green">Success: (200)</h3>
+                        </div>
 
-                    <div class="row">
-                        <h3 style="color: red">Error: Unauthorized (401)</h3>
-                    </div>
+                        <div class="row">
+                            <p>{</p>
+                            <span class="json-key">"createdAt": </span>
+                            <span class="json-value">"2017-02-24T10:25:07.919",</span><br>
+                            <span class="json-key">"userEmail": </span>
+                            <span class="json-value">"phuc@gmail.com",</span><br>
+                            <span class="json-key">"userFirstName": </span>
+                            <span class="json-value">"Thien Phuc"</span><br>
+                            <span class="json-key">"userLastName": </span>
+                            <span class="json-value">"Nguyen"</span><br>
+                            <span class="json-key">"userID": </span>
+                            <span class="json-value">"4"</span><br>
+                            <span class="json-key">"userPhone": </span>
+                            <span class="json-value">"068452597"</span><br>
+                            <span class="json-key">"userTwitter": </span>
+                            <span class="json-value">"phuc@gmail.com"</span>
+                            <p>}</p>
+                        </div>
 
-                    <div class="row">
-                        <p>{</p>
-                        <span class="json-key">"documentation": </span>
-                        <span class="json-value">"http://weshare-api.documentation.com",</span><br>
-                        <span class="json-key">"message": </span>
-                        <span class="json-value">"Invalid authorization token. Please login first to get session token",</span><br>
-                        <span class="json-key">"statusCode": </span>
-                        <span class="json-value">"401"</span>
-                        <p>}</p>
-                    </div>
+                        <div class="row">
+                            <h3 style="color: red">Error: Unauthorized (401)</h3>
+                        </div>
 
+                        <div class="row">
+                            <p>{</p>
+                            <span class="json-key">"documentation": </span>
+                            <span class="json-value">"http://weshare-api.documentation.com",</span><br>
+                            <span class="json-key">"message": </span>
+                            <span class="json-value">"Invalid authorization token. Please login first to get session token",</span><br>
+                            <span class="json-key">"statusCode": </span>
+                            <span class="json-value">"401"</span>
+                            <p>}</p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
